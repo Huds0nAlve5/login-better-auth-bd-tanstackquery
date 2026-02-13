@@ -8,12 +8,6 @@ export type retornoUsuario = {
   usuarios?: any[];
 };
 
-export async function selectUsuarios(): Promise<retornoUsuario> {
-  try {
-    const usuarios = await prisma.user.findMany({ orderBy: { name: "asc" } });
-
-    return { sucess: true, usuarios: usuarios };
-  } catch (e) {
-    return { error: `Erro: ${e}` };
-  }
+export async function selectUsuarios() {
+  return await prisma.user.findMany({ orderBy: { name: "asc" } });
 }

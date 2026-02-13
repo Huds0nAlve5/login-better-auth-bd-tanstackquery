@@ -58,7 +58,7 @@ export default function page() {
             position: "top-right",
           });
           form.reset();
-          router.push("/"); //redirecionamento opcional
+          router.push("/home"); //redirecionamento opcional
         },
         onError: (ctx) => {
           // O Better-Auth já devolve a mensagem de erro amigável (ex: e-mail já existe)
