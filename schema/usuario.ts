@@ -11,5 +11,17 @@ export const usuarioLoginSchema = z.object({
   password: z.string().min(1, "A senha é obrigatória"),
 });
 
+export const usuarioAtualizarSenhaSchema = usuarioSchema
+  .extend({
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "A confirmação de senha não coincide",
+    path: ["confirmPassword"],
+  });
+
 export type usuarioType = z.infer<typeof usuarioSchema>;
 export type usuarioLoginType = z.infer<typeof usuarioLoginSchema>;
+export type usuarioAtualizarSenhaType = z.infer<
+  typeof usuarioAtualizarSenhaSchema
+>;

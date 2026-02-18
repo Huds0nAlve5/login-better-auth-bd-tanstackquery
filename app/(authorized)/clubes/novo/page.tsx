@@ -1,6 +1,7 @@
 "use client";
 
 import { createClube } from "@/actions/clube";
+import { formQueryCreate } from "@/components/toaster/useQuery";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -41,24 +42,19 @@ export default function page() {
     },
   });
 
-  const queryClient = useQueryClient();
-
-  //  const query = useQuery({ queryKey: ['todos'], queryFn: getTodos })
-
-  const mutation = useMutation({
-    mutationFn: createClube,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
-      form.reset();
-      route.push("/clubes");
-    },
+  const { mutate, isPending } = formQueryCreate({
+    func: createClube,
+    queryKey: "clubes",
+    entidade: "Clube",
+    form: form,
+    redirect_path: "/clubes",
   });
 
   return (
     <>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
+          onSubmit={form.handleSubmit((data) => mutate(data))}
           className="flex justify-center items-center mt-34"
         >
           <Card className="w-100">
