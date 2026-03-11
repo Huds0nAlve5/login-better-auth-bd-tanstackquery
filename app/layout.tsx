@@ -17,8 +17,8 @@ export default function RootLayout({
     <html lang="en">
       <body className="w-full h-full">
         <QueryProvider>
-          <Toaster />
           {children}
+          <Toaster richColors position="top-right" />
         </QueryProvider>
       </body>
     </html>

@@ -20,9 +20,13 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
+  phoneNumber         String?
+  phoneNumberVerified Boolean?
+
   @@unique([email])
   @@map("user")
   @@schema("auth")
+  @@unique([phoneNumber])
 }
 
 model Session {
@@ -88,9 +92,9 @@ model Jwks {
 }
 
 model Clube {
-  id          Int   @id @default(autoincrement())
-  nome        String
-  estado      String
+  id     Int    @id @default(autoincrement())
+  nome   String
+  estado String
 
   @@schema("public")
 }

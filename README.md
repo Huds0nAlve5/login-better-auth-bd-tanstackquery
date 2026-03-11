@@ -9,6 +9,7 @@
 ### 1º Instalação das dependências
 
 ```bash
+npm i @tanstack/react-query
 npm i -D @tanstack/eslint-plugin-query
 ```
 
